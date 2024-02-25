@@ -44,7 +44,7 @@ export async function createGroupedGetter() {
 
 // e.g. model.${getterGroupName}.getterName
 extension ${className}NamedGetter on ${className} {
-  // change ${exampleGetterName} getter to yours
+  // Add more getters here
   ${getterClassName} get ${getterGroupName} => ${getterClassName}(this);
 }
 
