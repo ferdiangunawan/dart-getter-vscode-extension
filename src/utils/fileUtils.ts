@@ -8,6 +8,7 @@ export function createGetterFile(baseName: string, extensionCode: string, isDire
   isDirectGetter
       ? `${baseName}_direct_getter.dart`
       : `${baseName}_grouped_getter.dart`;
+  
   const filePath = path.join(folderPath, newFileName);
 
   try {
