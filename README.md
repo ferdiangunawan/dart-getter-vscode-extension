@@ -1,4 +1,4 @@
-# dart-getter README
+# Dart Getter VSCode Extension
 
 This is the README for the "dart-getter" extension, which provides functionality related to generating Dart getter methods.
 

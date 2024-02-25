@@ -21,7 +21,7 @@ export async function createDirectGetter() {
 
   const extensionCode = `
 
-extension ${className}Extension on ${className} {
+extension ${className}Getter on ${className} {
   // create getter here
 }
 `;
