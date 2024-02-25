@@ -1,9 +1,7 @@
 # Change Log
 
-All notable changes to the "dart-getter" extension will be documented in this file.
-
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
-## [Unreleased]
+## 0.0.1 (2024-2-25)
 
 - Initial release
+- Create getter extension based on dart file name
+- Add Direct and Group getter

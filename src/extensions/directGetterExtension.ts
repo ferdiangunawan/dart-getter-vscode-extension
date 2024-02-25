@@ -9,7 +9,6 @@ export async function createDirectGetter() {
     return;
   }
 
-
   const document = editor.document;
   const fileName = path.basename(document.fileName);
   const extension = path.extname(fileName);
