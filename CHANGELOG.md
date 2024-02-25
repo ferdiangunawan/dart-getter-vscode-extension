@@ -5,3 +5,7 @@
 - Initial release
 - Create getter extension based on dart file name
 - Add Direct and Group getter
+
+## 0.0.2 (2024-2-26)
+
+- Update incorrect documentation that may have led to misunderstandings

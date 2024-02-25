@@ -2,7 +2,7 @@
   "name": "dart-getter",
   "displayName": "Dart Getter Generator",
   "description": "generate getter by dart file naming. This snipped code uses dart extension to create getter",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "icon": "screenshots/icon.png",
   "publisher": "FerdianGunawan",
 	"repository": {
