@@ -38,6 +38,9 @@ so, the generated file and code will be like this
 This first version supports creating getter based on 2 ways (Direct and Grouped).
 It hasn't supported auto-import by YAML file (Will be developed for the next update)
 
+### 0.0.2
+
+Update incorrect documentation that may have led to misunderstandings
 
 ## Source
 
