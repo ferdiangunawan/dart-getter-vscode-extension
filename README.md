@@ -1,12 +1,12 @@
-# Dart Getter VSCode Extension
+# Dart Getter Generator - VSCode Extension
+
+[VS Code Extension Marketplace](https://marketplace.visualstudio.com/items?itemName=FerdianGunawan.dart-getter)
 
 This is the README for the "dart-getter" extension, which provides functionality related to generating Dart getter methods.
 
 ## Features
 
 The "dart-getter" extension allows you to generate getter methods in Dart classes quickly and easily. Simply select the class you want to generate getters for, choose the type of getter you want to create, and let the extension handle the rest.
-
-For example if there is an image subfolder under your extension project workspace:
 
 ![Command menu](./screenshots/main_menu.png)
 
@@ -27,7 +27,7 @@ Generate a grouped getter extension with multiple named getter methods for the s
 ![Grouped naming textfield](./screenshots/grouped_naming_textfield.png)
 You need to name the getter
 so, the generated file and code will be like this
-![Grouped getter example](./screenshots/grouped_naming_textfield.png)
+![Grouped getter example](./screenshots/grouped_example.png)
 
 
 ## Release Notes
