@@ -25,7 +25,7 @@ export async function createGroupedGetter() {
 
   const exampleGetterName = await vscode.window.showInputBox({
     prompt: "Enter the name of grouped getter:",
-    placeHolder: "write your grouped getter here ex: attendance",
+    placeHolder: "write your grouped getter here ex: skill",
     value: "",
   });
 
