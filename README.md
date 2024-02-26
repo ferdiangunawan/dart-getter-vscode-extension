@@ -10,25 +10,30 @@ The "dart-getter" extension allows you to generate getter methods in Dart classe
 
 
 When you run Command+Shift + P, there will be 2 options
+
 ![Two option menus](./screenshots/two_option_menus.png)
 
 ## Direct Getter
 
 Generate a direct getter extension for the selected Dart class.
+
 ![Direct getter example](./screenshots/direct_example.png)
 
 ## Grouped Getter
 
 Generate getter with the grouped getter. It allows you to have more than
 1 getter group.
+
 ![Grouped naming textfield](./screenshots/grouped_naming_textfield.png)
 You need to name the getter
 so, the generated file and code will be like this
+
 ![Grouped getter example](./screenshots/grouped_example.png)
 
 ## The Result
 After you select the getter type, the file structure will be like this.
 It will be saved on the 'getter' dir in the same parent directory.
+
 ![The file result](./screenshots/files.png)
 
 ## Release Notes
