@@ -1,1 +1,1 @@
-export * from './createGetter';
+export * from './command';
