@@ -1,8 +1,8 @@
 {
   "name": "dart-getter",
-  "displayName": "Dart Getter Generator",
+  "displayName": "Dart Getter File Generator",
   "description": "generate getter by dart file naming. This snipped code uses dart extension to create getter",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "icon": "screenshots/icon.png",
   "publisher": "FerdianGunawan",
 	"repository": {
@@ -20,8 +20,12 @@
   "contributes": {
     "commands": [
       {
-        "command": "extension.createGetter",
-        "title": "Create Dart Getter"
+        "command": "extension.createGetterFile",
+        "title": "Create Dart Getter File"
+      },
+      {
+        "command": "extension.initGetterTemplate",
+        "title": "Create Getter File Template YAML"
       }
     ]
   },
