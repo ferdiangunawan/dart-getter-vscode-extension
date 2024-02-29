@@ -1,5 +1,10 @@
 # Change Log
 
+
+## 0.0.4 (2024-2-29)
+
+- Add new command "Create Getter File Template YAML" to make custom auto import as template when creating getter file.
+
 ## 0.0.3 (2024-2-26)
 
 - Update screenshot and placeholder

@@ -1,6 +1,10 @@
 import * as path from "path";
 import * as vscode from "vscode";
-import { createGetterFile, snakeToCamel } from "../utils/index";
+import {
+  createGetterFile,
+  snakeToCamel,
+  getImportsFromYaml,
+} from "../utils/index";
 
 export async function createDirectGetter() {
   const editor = vscode.window.activeTextEditor;
@@ -18,12 +22,22 @@ export async function createDirectGetter() {
     true
   );
 
-  const extensionCode = `
+  const importTemplates = getImportsFromYaml();
+  let extensionCode = '';
 
-extension ${className}Getter on ${className} {
-  // create getter here
-}
-`;
+  if (importTemplates.length !== 0) {
+    const importedFiles = importTemplates
+      .map((importPath) => `import '${importPath}';`)
+      .join("\n").trim();
+    extensionCode = `${importedFiles}\n\nextension ${className}Getter on ${className} {
+    // create getter here e.g. String get fullName => 'David Sutarman';
+  }`;
+  } else {
+    extensionCode = `
+  extension ${className}Getter on ${className} {
+    // create getter here
+  }`;
+  }
 
   createGetterFile(baseName, extensionCode, true);
 }
