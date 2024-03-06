@@ -26,14 +26,14 @@ export async function createGroupedGetter() {
     true
   );
 
-  const exampleGetterName = await vscode.window.showInputBox({
-    prompt: "Enter the name of grouped getter:",
-    placeHolder: "write your grouped getter here ex: skill",
+  var exampleGetterName = await vscode.window.showInputBox({
+    prompt: "Enter the name of getter group:",
+    placeHolder: "ex: getter/historyGetter/scheduleGetter",
     value: "",
   });
 
   if (!exampleGetterName) {
-    return;
+    exampleGetterName = "getter";
   }
 
   const cleanedGetterName = exampleGetterName.replace(/[^a-zA-Z]/g, "");
@@ -41,7 +41,7 @@ export async function createGroupedGetter() {
   const exampleGetterNameCapitalize = capitalizeFirstLetter(cleanedGetterName);
   const exampleGetterNameLower = lowercaseFirstLetter(cleanedGetterName);
   const getterClassName = `_${exampleGetterNameCapitalize}Getter`;
-  const getterGroupName = `${exampleGetterNameLower}Getter`;
+  const getterGroupName = `${exampleGetterNameLower}`;
   const ignoreTemplates = getDataFromYaml("ignore");
   const importTemplates = getDataFromYaml("import");
   var generatedCode = "";
