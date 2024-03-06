@@ -3,15 +3,9 @@ import * as path from "path";
 import * as vscode from "vscode";
 import * as yaml from "js-yaml";
 
-export function createGetterFile(
-  baseName: string,
-  extensionCode: string,
-  isDirectGetter: Boolean
-) {
+export function createGetterFile(baseName: string, extensionCode: string) {
   const folderPath = getGetterFolderPath();
-  const newFileName = isDirectGetter
-    ? `${baseName}_direct_getter.dart`
-    : `${baseName}_grouped_getter.dart`;
+  const newFileName = `${baseName}_getter.dart`;
 
   const filePath = path.join(folderPath, newFileName);
 
@@ -52,11 +46,12 @@ function getGetterFolderPath(): string {
 }
 
 /**
- * Get the list of import defined in the getter_file_template.yaml file
- * located in the project root directory.
- * @returns An array of import statements, or an empty array if the file is not found or invalid.
+ * Get data from a YAML file located in the specified path.
+ * @param filePath The path to the YAML file.
+ * @param section The section to extract from the YAML file.
+ * @returns The data parsed from the YAML file, or undefined if the file is not found or invalid.
  */
-export function getImportsFromYaml(): string[] {
+export function getDataFromYaml(section: "import" | "ignore"): string[] {
   // Get the root project path
   const rootPath = getDocumentWorkspaceFolder();
   if (!rootPath) {
@@ -65,34 +60,35 @@ export function getImportsFromYaml(): string[] {
   }
 
   // Construct the path to the YAML file
-  const yamlFilePath = path.join(rootPath, "getter_file_template.yaml");
+  const filePath = path.join(rootPath, "getter_file_template.yaml");
 
   // Check if the file exists
-  if (!fs.existsSync(yamlFilePath)) {
-    vscode.window.showWarningMessage("import_getter_file_template.yaml not found.");
+  if (!fs.existsSync(filePath)) {
+    vscode.window.showWarningMessage(`${path.basename(filePath)} not found.`);
     return [];
   }
 
   // Read the YAML file
-  // const yamlContent = fs.readFileSync(yamlFilePath, 'utf8');
-  const yamlContent = fs.readFileSync(yamlFilePath, "utf8");
+  const yamlContent = fs.readFileSync(filePath, "utf8");
 
   try {
     // Parse the YAML content
-    const yamlData = yaml.load(yamlContent) as { import: string[] };
+    const yamlData = yaml.load(yamlContent) as
+      | { [key: string]: string[] }
+      | undefined;
 
-    if (Array.isArray(yamlData?.import)) {
-      // Extract the list of import
-      return yamlData.import.map((importPath: string) => `${importPath}`);
+    if (yamlData && Array.isArray(yamlData[section])) {
+      // Extract the list of items from the specified section
+      return yamlData[section].map((item: string) => item);
     } else {
       vscode.window.showWarningMessage(
-        "Invalid format: import property is missing or not an array."
+        `Invalid format: ${section} section is missing or not an array.`
       );
       return [];
     }
   } catch (error) {
     vscode.window.showErrorMessage(
-      `Error parsing getter_file_template.yaml: ${(error as Error).message}`
+      `Error parsing ${path.basename(filePath)}: ${(error as Error).message}`
     );
     return [];
   }
@@ -102,7 +98,10 @@ export function generateGetterFileTemplate(rootPath: string): void {
   const content = `import:
     # - package:component/index.dart`;
 
-  const filePath = vscode.Uri.joinPath(vscode.Uri.file(rootPath), 'getter_file_template.yaml').fsPath;
+  const filePath = vscode.Uri.joinPath(
+    vscode.Uri.file(rootPath),
+    "getter_file_template.yaml"
+  ).fsPath;
 
   fs.writeFileSync(filePath, content);
 }

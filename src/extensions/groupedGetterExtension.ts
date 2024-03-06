@@ -6,7 +6,7 @@ import {
 } from "../utils/stringUtils";
 import {
   createGetterFile,
-  getImportsFromYaml,
+  getDataFromYaml,
   snakeToCamel,
 } from "../utils/index";
 
@@ -42,17 +42,25 @@ export async function createGroupedGetter() {
   const exampleGetterNameLower = lowercaseFirstLetter(cleanedGetterName);
   const getterClassName = `_${exampleGetterNameCapitalize}Getter`;
   const getterGroupName = `${exampleGetterNameLower}Getter`;
-  const importTemplates = getImportsFromYaml();
+  const ignoreTemplates = getDataFromYaml("ignore");
+  const importTemplates = getDataFromYaml("import");
   var generatedCode = "";
 
-  if (importTemplates.length !== 0) {
+  if (importTemplates.length !== 0 || ignoreTemplates.length !== 0) {
+    const ignoredCodes = ignoreTemplates
+      .map((ignoreCode) => `// ignore_for_file:${ignoreCode}`)
+      .join("\n")
+      .trim();
+
     const importedFiles = importTemplates
       .map((importPath) => `import '${importPath}';`)
-      .join('\n').trim();
+      .join("\n")
+      .trim();
 
-    generatedCode = `${importedFiles}\n\n// e.g. model.${getterGroupName}.getterName
+    generatedCode = `${ignoredCodes}\n\n${importedFiles}\n
 extension ${className}NamedGetter on ${className} {
-  // Add more getters here
+  // How to call: yourObject.${getterGroupName}.yourGetter
+  // Add more getter groups here
   ${getterClassName} get ${getterGroupName} => ${getterClassName}(this);
 }
 
@@ -65,9 +73,9 @@ class ${getterClassName} {
 `;
   } else {
     generatedCode = `
-  // How to call: yourObject.${getterGroupName}.yourGetter
   extension ${className}NamedGetter on ${className} {
-    // Add more group of getters here
+    // How to call: yourObject.${getterGroupName}.yourGetter
+    // Add more getter groups here
     ${getterClassName} get ${getterGroupName} => ${getterClassName}(this);
   }
   
@@ -80,5 +88,5 @@ class ${getterClassName} {
   `;
   }
 
-  createGetterFile(baseName, generatedCode, false);
+  createGetterFile(baseName, generatedCode);
 }
