@@ -19,12 +19,6 @@ When you run Command+Shift + P, there will be 2 options
 
 ![Two option menus](./screenshots/two_option_menus.png)
 
-## Direct Getter
-
-Generate a direct getter extension for the selected Dart class.
-
-![Direct getter example](./screenshots/direct_example.png)
-
 ## Grouped Getter
 
 Generate getter with the grouped getter. It allows you to have more than
@@ -41,6 +35,12 @@ After you select the getter type, the file structure will be like this.
 It will be saved on the 'getter' dir in the same parent directory.
 
 ![The file result](./screenshots/files.png)
+
+### 0.0.6
+Add "ignore" section to getter_file_template.yaml
+
+### 0.0.5
+Remove Direct Getter feature
 
 ### 0.0.4
 

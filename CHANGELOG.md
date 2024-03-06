@@ -1,9 +1,13 @@
 # Change Log
 
 
-## 0.0.4 (2024-2-29)
+## 0.0.6 (2024-3-7)
 
-- Add new command "Create Getter File Template YAML" to make custom auto import as template when creating getter file.
+- Add "ignore" section to getter_file_template.yaml
+
+## 0.0.5 (2024-3-6)
+
+- Remove Direct Getter feature
 
 ## 0.0.3 (2024-2-26)
 
